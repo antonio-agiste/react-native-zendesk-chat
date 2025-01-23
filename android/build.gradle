@@ -6,8 +6,8 @@ def safeExtGet(prop, fallback) {
 
 buildscript {
   repositories {
-    jcenter()
     google()
+    mavenCentral()
   }
 
   dependencies {
@@ -28,15 +28,14 @@ android {
 }
 
 repositories {
-  mavenCentral()
-  jcenter()
   google()
+  mavenCentral()
   maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
 }
 
 dependencies {
   implementation "com.facebook.react:react-native:+"
 
-  api group: 'com.zendesk', name: 'chat', version: safeExtGet('zendeskChatVersion', '3.1.0')
-  api group: 'com.zendesk', name: 'messaging', version: safeExtGet('zendeskMessagingVersion', '5.1.0')
+  api group: 'com.zendesk', name: 'chat', version: safeExtGet('zendeskChatVersion', '3.3.6')
+  api group: 'com.zendesk', name: 'messaging', version: safeExtGet('zendeskMessagingVersion', '5.2.5')
 }
