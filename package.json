@@ -41,8 +41,8 @@
 		"eslint": "7.3.x"
 	},
 	"peerDependencies": {
-		"react": "^16.11.0",
-		"react-native": "0.60.x | 0.61.x | 0.62.x | 0.63.x"
+		"react": "*",
+		"react-native": "*"
 	},
 	"packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }

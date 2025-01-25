@@ -4,6 +4,9 @@ def safeExtGet(prop, fallback) {
   rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
+def zendeskChatVersion = '3.4.0'
+def zendeskMessagingVersion = '5.4.0'
+
 buildscript {
   repositories {
     google()
@@ -11,13 +14,13 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.1'
+    classpath 'com.android.tools.build:gradle:7.2.2'
   }
 }
 
 android {
-    compileSdkVersion safeExtGet('compileSdkVersion', 28)
-    buildToolsVersion safeExtGet('buildToolsVersion', "28.0.3")
+    compileSdkVersion safeExtGet('compileSdkVersion', 33)
+    buildToolsVersion safeExtGet('buildToolsVersion', '33.0.0')
 
     defaultConfig {
       minSdkVersion safeExtGet('minSdkVersion', 16)
@@ -35,8 +38,6 @@ repositories {
 
 dependencies {
   implementation "com.facebook.react:react-native:+"
-  // implementation 'com.google.android.flexbox:flexbox:3.0.0'
-
-  api group: 'com.zendesk', name: 'chat', version: safeExtGet('zendeskChatVersion', '3.3.6')
-  api group: 'com.zendesk', name: 'messaging', version: safeExtGet('zendeskMessagingVersion', '5.2.5')
+  implementation group: 'com.zendesk', name: 'chat', version: zendeskChatVersion
+  implementation group: 'com.zendesk', name: 'messaging', version: zendeskMessagingVersion
 }
