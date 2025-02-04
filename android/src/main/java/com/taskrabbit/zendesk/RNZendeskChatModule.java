@@ -368,7 +368,9 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
                 ChatSessionStatus chatStatus = chatState.getChatSessionStatus();
                 // Status achieved after the PreChatForm is completed
                 if (chatStatus == ChatSessionStatus.STARTED) {
-                    observationScope.cancel(); // Once the chat is started disable the observation
+                    if(observationScope != null) {
+                        observationScope.cancel(); // Once the chat is started disable the observation
+                    }
                     observationScope = null; // Clean things up to avoid confusion.
                     if (pendingVisitorInfo == null) { return; }
 
