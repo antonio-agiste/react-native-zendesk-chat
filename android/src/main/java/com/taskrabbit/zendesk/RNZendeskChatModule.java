@@ -359,7 +359,13 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
     }
 
     // https://support.zendesk.com/hc/en-us/articles/360055343673
+    // https://github.com/taskrabbit/react-native-zendesk-chat/issues/120
     public void setupChatStartObserverToSetVisitorInfo(){
+        // Stop if we already have chat state observer
+        if(observationScope != null) {
+            return;
+        }
+
         // Create a temporary observation scope until the chat is started.
         observationScope = new ObservationScope();
         Chat.INSTANCE.providers().chatProvider().observeChatState(observationScope, new Observer<ChatState>() {
@@ -370,8 +376,9 @@ public class RNZendeskChatModule extends ReactContextBaseJavaModule {
                 if (chatStatus == ChatSessionStatus.STARTED) {
                     if(observationScope != null) {
                         observationScope.cancel(); // Once the chat is started disable the observation
+                        observationScope = null; // Clean things up to avoid confusion.
                     }
-                    observationScope = null; // Clean things up to avoid confusion.
+
                     if (pendingVisitorInfo == null) { return; }
 
                     // Update the information MID chat here. All info but Department can be updated
